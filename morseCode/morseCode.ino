@@ -47,12 +47,11 @@ char decode_letter(char ch)
  for(int i=0;i<morse_code.length();i++){
    if(morse_code[i]=='.'){
      blink_dot();
-     if(i!=morse_code.length()-1)symboldelay();
    }
    else if(morse_code[i]=='-'){
      blink_dash();
-     if(i+1<morse_code.length()-1)symboldelay();
      }
+  if(i+1<morse_code.length()-1)symboldelay();
  }
 }
 //it  decodes the letters in the word and blink the led
