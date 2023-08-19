@@ -16,7 +16,6 @@ void setup() {
   Serial.begin(9600);
   pinMode( LED_PIN ,OUTPUT);
   pinMode( BUTTON_PIN ,INPUT);
-  attachInterrupt(BUTTON_PIN, decode_word, FALLING);
 }
 
 //used to blink the dot
