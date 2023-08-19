@@ -82,7 +82,6 @@ if(digitalRead(BUTTON_PIN)==LOW){
 name = takeInput();
 decode_word(name);
 }
-
 else{
   digitalWrite( LED_PIN , LOW);
 }
