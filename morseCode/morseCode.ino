@@ -1,7 +1,7 @@
 // Define time units for different parts of Morse code
 #define UNIT 500
 #define DOT_LENGTH (1 * UNIT)
-#define DASH_LENGTH (1 * UNIT)
+#define DASH_LENGTH (3 * UNIT)
 #define CODE_PART_SPACE (1 * UNIT)
 #define LETTER_SPACE (3 * UNIT)
 
