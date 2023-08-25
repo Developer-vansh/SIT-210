@@ -1,91 +1,103 @@
+// Define time units for different parts of Morse code
 #define UNIT 500
-#define DOT_LENGTH (1*UNIT) 
-#define DASH_LENGTH (1*UNIT) 
-#define CODE_PART_SPACE (1*UNIT)      
-#define LETTER_SPACE (3 * UNIT) 
-#define  LED_PIN 13
+#define DOT_LENGTH (1 * UNIT)
+#define DASH_LENGTH (1 * UNIT)
+#define CODE_PART_SPACE (1 * UNIT)
+#define LETTER_SPACE (3 * UNIT)
+
+// Define the pin numbers for LED and button
+#define LED_PIN 13
 #define BUTTON_PIN 2
-String name;
-//This array is declared for storing the morse code for all the alphabets
-String letters_code[26]={".-","-...","-.-.","-..",".","..-.","--.","....","..",
-                          ".---","-.-",".-..","--","-.","---",".--.","--.-",".-.",
-                          "...","-","..-","...-",".--","-..-","-.--","--.."                        
-                        };
+
+// Variable to store the input name
+String name="VANSH";
+
+// Morse code representation of alphabets
+String letters_code[26] = {
+    ".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..",
+    ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.",
+    "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.."
+};
 
 void setup() {
-  Serial.begin(9600);
-  pinMode( LED_PIN ,OUTPUT);
-  pinMode( BUTTON_PIN ,INPUT);
-  attachInterrupt(BUTTON_PIN, decode_word, FALLING);
+  Serial.begin(9600);  // Initialize serial communication
+  pinMode(LED_PIN, OUTPUT);     // Set LED pin as output
+  pinMode(BUTTON_PIN, INPUT_PULLUP);   // Set button pin as input
 }
 
-//used to blink the dot
+// Function to blink a dot
 void blink_dot() {
-    digitalWrite( LED_PIN , HIGH);
-    delay(DOT_LENGTH);
-    digitalWrite( LED_PIN , LOW);
+    digitalWrite(LED_PIN, HIGH);  // Turn on the LED
+    delay(DOT_LENGTH);            // Keep LED on for DOT_LENGTH milliseconds
+    digitalWrite(LED_PIN, LOW);   // Turn off the LED
 }
-//used to blink the dash
-void blink_dash() {
-    digitalWrite( LED_PIN , HIGH);
-    delay(DASH_LENGTH);
-    digitalWrite( LED_PIN , LOW);
-}
-//delay b/w the . and - of morse code
-void symboldelay() {
-    delay(CODE_PART_SPACE);+
 
+// Function to blink a dash
+void blink_dash() {
+    digitalWrite(LED_PIN, HIGH);  // Turn on the LED
+    delay(DASH_LENGTH);           // Keep LED on for DASH_LENGTH milliseconds
+    digitalWrite(LED_PIN, LOW);   // Turn off the LED
 }
-//delay after blinking one letter
+
+// Delay between different parts of a Morse code symbol
+void symboldelay() {
+    delay(CODE_PART_SPACE);
+}
+
+// Delay after blinking one letter
 void letterdelay() {
     delay(LETTER_SPACE);
 }
-//it  decodes the code for letter  and blink the led
-char decode_letter(char ch)
-{
-  int index=ch-'A';
- String morse_code= letters_code[index];
- for(int i=0;i<morse_code.length();i++){
-   if(morse_code[i]=='.'){
-     blink_dot();
-     if(i!=morse_code.length()-1)symboldelay();
-   }
-   else if(morse_code[i]=='-'){
-     blink_dash();
-     if(i+1<morse_code.length()-1)symboldelay();
-     }
- }
-}
-//it  decodes the letters in the word and blink the led
-void decode_word(String word){
- for(int i=0;i<word.length();i++){
-   decode_letter(word[i]);
-     if(i+1<word.length()-1)letterdelay();
- }
- }
 
-String takeInput() {
-  String input = "";
-  while (Serial.available() > 0) {
-    char ch = Serial.read();
-    if (ch == '\n') {
-      break;
+// Decode a single letter's Morse code and blink the LED accordingly
+char decode_letter(char ch) {
+    int index = ch - 'A';  // Calculate index for the letter in the Morse code array
+    String morse_code = letters_code[index];  // Get Morse code for the letter
+
+    for (int i = 0; i < morse_code.length(); i++) {
+        if (morse_code[i] == '.') {
+            blink_dot();
+        } else if (morse_code[i] == '-') {
+            blink_dash();
+        }
+        if (i + 1 < morse_code.length() - 1) {
+            symboldelay();
+        }
     }
-    input += ch;
-  }
-  input.toUpperCase();
-  return input;
 }
 
+// Decode a whole word and blink the LED accordingly
+void decode_word(String word) {
+     Serial.println(word);
+    for (int i = 0; i < word.length(); i++) {
+       Serial.println(word[i]);
+        decode_letter(word[i]);
+        if (i + 1 < word.length() - 1) {
+            letterdelay();
+        }
+    }
+}
+
+// Function to read input from serial monitor until newline character
+
+// void takeInput() {
+//   Serial.println("Enter your name");
+//     while (name=="") {
+//         name=Serial.readStringUntil('/n');
+//     }
+//     name.toUpperCase();  // Convert input to uppercase
+    
+// }
 void loop() {
+    //Check if the button is pressed
+    if (digitalRead(BUTTON_PIN) == LOW) {
+        decode_word(name);  // Decode and blink the Morse code
+        delay(500);
+    } else {
+        digitalWrite(LED_PIN, LOW);  // Turn off the LED
+    }
+   
 
-if(digitalRead(BUTTON_PIN)==LOW){
-name = takeInput();
-decode_word(name);
+
 }
 
-else{
-  digitalWrite( LED_PIN , LOW);
-}
-
-}
