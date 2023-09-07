@@ -45,7 +45,7 @@ Serial.println(blueValue);
   digitalWrite(ledPinGreen, greenValue ? HIGH : LOW); // Turn on/off the green LED
   digitalWrite(ledPinBlue, blueValue ? HIGH : LOW);   // Turn on/off the blue LED
 
-  delay(2000); // Adjust the delay as needed
+  delay(2000); 
 }
 
 void connectToWiFi() {
