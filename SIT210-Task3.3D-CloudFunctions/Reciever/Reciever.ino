@@ -100,18 +100,12 @@ void ledAction() {
     Serial.print((char)mqttClient.read());
   }
   Serial.println();
-  digitalWrite(light, HIGH);
-  delay(200);
-  digitalWrite(light, LOW);
-  delay(200);
-  digitalWrite(light, HIGH);
-  delay(200);
-  digitalWrite(light, LOW);
-  delay(200);
-  digitalWrite(light, HIGH);
-  delay(200);
-  digitalWrite(light, LOW);
-  delay(200);
+ for (int i = 0; i < 3; i++) {
+          digitalWrite(light, HIGH);
+          delay(500);
+          digitalWrite(light, LOW);
+          delay(500);
+        }
   Serial.println();
 }
 
