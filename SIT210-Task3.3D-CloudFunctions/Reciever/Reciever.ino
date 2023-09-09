@@ -91,15 +91,16 @@ void recieveMessage() {
     Serial.print("', length ");
     Serial.print(messageSize);
     Serial.println(" bytes:");
+    while (mqttClient.available()) {
+    Serial.print((char)mqttClient.read());
+  }
+  Serial.println();
+  ledAction()
   }
 }
 
 // Function to control the LED based on MQTT messages
 void ledAction() {
-  while (mqttClient.available()) {
-    Serial.print((char)mqttClient.read());
-  }
-  Serial.println();
  for (int i = 0; i < 3; i++) {
           digitalWrite(light, HIGH);
           delay(500);
@@ -112,5 +113,4 @@ void ledAction() {
 void loop() {
   // Continuously check for incoming MQTT messages and control the LED
   recieveMessage();
-  ledAction();
 }
