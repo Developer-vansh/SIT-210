@@ -34,8 +34,6 @@ const char mqttTopic[] = "SIT210Vansh/mywave";
 const long measurementInterval = 1000;
 unsigned long previousMillis = 0;
 
-int waveCount = 0;
-
 // Setup function for initializing serial communication
 void setupSerial() {
   Serial.begin(9600);
@@ -105,6 +103,5 @@ void loop() {
 
     Serial.println();
 
-    waveCount++;
   }
 }
