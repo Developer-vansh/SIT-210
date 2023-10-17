@@ -73,14 +73,7 @@ void loop() {
   sensorValue = analogRead(sensorPin);
 float temperature=(reading/1024.0)*5000;
 float Celsius=temperature/100;
-Celsius=Celsius+32;
  float temperatureFahrenheit = (Celsius * 9.0 / 5.0) + 32.0;
- temperatureFahrenheit-=2;
- temperatureFahrenheit=random(96, 98)+random(0, 100) / 100.0;
-//   if(temperatureFahrenheit<=94) {temperatureFahrenheit+=7.5;
-
-//  }
-//   else if(temperatureFahrenheit>94)temperatureFahrenheit=0;
   heartRate = map(sensorValue, 0, 1023, 50, 120);
   delay(10);
     // Publish temperature data in JSON format
