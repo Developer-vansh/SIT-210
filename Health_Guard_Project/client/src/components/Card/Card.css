@@ -1,0 +1,123 @@
+/* CompactCard styles */
+.CompactCard {
+  display: flex; /* Uses flexbox for layout */
+  flex: 1;
+  height: 15rem !important; /* Sets the height to 10rem with important to override other styles */
+  width: 30rem; /* Sets the width to 25rem */
+  border-radius: 0.7rem; /* Rounds the corners with a radius of 0.7rem */
+  color: white; /* Sets the text color to white */
+  padding: 1rem; /* Adds 1rem of padding */
+  position: relative; /* Sets the position to relative */
+  cursor: pointer; /* Changes the cursor to a pointer on hover */
+}
+
+/* Remove box shadow on hover for CompactCard */
+.CompactCard:hover {
+  box-shadow: none !important; /* Removes box shadow on hover with important to override other styles */
+}
+
+/* Radial bar styles */
+.radialBar {
+  flex: 1 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 1rem; /* Adds a gap of 1rem between child elements */
+}
+
+/* CircularProgressbar styles */
+.CircularProgressbar {
+  width: 4rem !important; /* Sets the width to 4rem with important to override other styles */
+  overflow: visible; /* Allows content to overflow if necessary */
+}
+
+/* CircularProgressbar path styles */
+.CircularProgressbar-path {
+  stroke: white !important; /* Sets the stroke color to white with important to override other styles */
+  stroke-width: 12px !important; /* Sets the stroke width to 12px with important to override other styles */
+  filter: drop-shadow(2px 4px 6px white); /* Adds a drop shadow with specified parameters */
+}
+
+
+/* CircularProgressbar text styles */
+.CircularProgressbar-text {
+  fill: white !important; /* Sets the fill color to white with important to override other styles */
+}
+
+/* Styling for text within radialBar */
+/* .radialBar > span {
+  font-size: 17px;
+  font-weight: bold;
+} */
+
+/* sideDetail styles */
+.detail {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+/* Styling for the second span within .detail */
+.detail > span:nth-child(2) {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* Styling for the third span within .detail */
+.detail > span:nth-child(3) {
+  font-size: 12px;
+}
+
+/* ExpandedCard styles */
+.ExpandedCard {
+  position: absolute;
+  width: 60%;
+  height: 64vh;
+  z-index: 9;
+  left: 13rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 1rem;
+}
+
+/* Styling for the first span within .ExpandedCard */
+.ExpandedCard > span:nth-of-type(1) {
+  color: white;
+  font-size: 26px;
+  font-weight: bold;
+  text-shadow: 0px 0px 15px white; /* Adds a text shadow with specified parameters */
+}
+
+/* Styling for the second span within .ExpandedCard */
+.ExpandedCard > span:nth-of-type(2) {
+  color: rgb(236, 236, 236);
+  font-size: 15px;
+}
+
+/* Styling for .chartContainer */
+.chartContainer {
+  width: 70%;
+}
+
+/* Media queries for different screen sizes */
+@media screen and (max-width: 1200px) {
+  .ExpandedCard {
+    top: 2rem;
+    height: 45vh;
+    left: 6rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .ExpandedCard {
+    top: 8rem;
+    height: 50%;
+    left: 25px;
+    width: 80%;
+  }
+}

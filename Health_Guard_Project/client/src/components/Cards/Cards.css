@@ -1,0 +1,26 @@
+.Cards {
+  margin-left: 10px;
+  display: flex;
+  gap: 70px;
+  /* Add margin-bottom to move the cards up */
+  margin-bottom: 220px; /* You can adjust this value as needed */
+}
+
+.parentContainer {
+  width: 100%;
+}
+
+@media screen and (max-width: 1200px) {
+  .Cards {
+    flex-direction: column;
+  }
+  .parentContainer {
+    height: 20rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Cards {
+    width: 90%;
+  }
+}

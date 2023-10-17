@@ -55,7 +55,7 @@ void setupWiFi() {
 
 // Function to connect to the MQTT broker
 void connectToMQTTBroker() {
-  Serial.print("Attempting to connect to the MQTT broker: ");
+  Serial.print("Attempting t o connect to the MQTT broker: ");
   Serial.println(mqttBroker);
 
   if (!mqttClient.connect(mqttBroker, mqttPort)) {
