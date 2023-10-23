@@ -2,8 +2,8 @@ import smbus2
 from bh1750 import BH1750
 
 # Define the I2C bus and the sensor address
-i2c_bus = smbus2.SMBus(1)  # Uses I2C bus 1 
-light_sensor = BH1750(i2c_bus,0x23)  #This is the Bydefault I2C address of BH1750
+bus = smbus2.SMBus(1)  # Uses I2C bus 1 
+light_sensor = BH1750(bus,0x23)  #This is the Bydefault I2C address of BH1750
 
 # Function to check the type of light intensity
 def check_type(intensity):
@@ -18,15 +18,16 @@ def check_type(intensity):
     else:
         return "Too Dark"
         
-def calculate():
-      intensity = light_sensor.measure_high_res()
-      print("Current Light Intensity:",  intensity, "lux")
-      intensity_type = check_type( intensity/10)
-      print("Light Intensity Type:",  intensity_type )
+
 
 try:
     while True:
-        calculate()
+         light_level = light_sensor.measure_high_res()
+         category = check_type(  light_level /10)
+         print("Light Level: { light_level }lux - Category: {intensity_type}" )
+         time.sleep(1)
       
 except KeyboardInterrupt:
         GPIO.cleanup()
+finally:
+        bus.close()
