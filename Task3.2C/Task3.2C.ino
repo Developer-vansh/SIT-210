@@ -1,6 +1,6 @@
 #include <WiFiNINA.h>
 
-//please enter your sensitive data in the Secret tab
+
 char ssid[] = "iPhone";
 char pass[] = "12345666";
 
