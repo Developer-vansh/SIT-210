@@ -1,4 +1,5 @@
 import smbus2
+import time
 from bh1750 import BH1750
 
 # Define the I2C bus and the sensor address
@@ -22,7 +23,7 @@ def check_type(intensity):
 
 try:
     while True:
-         light_level = light_sensor.measure_high_res()
+         light_level = light_sensor.readLightLevel()
          category = check_type(  light_level /10)
          print("Light Level: { light_level }lux - Category: {intensity_type}" )
          time.sleep(1)
