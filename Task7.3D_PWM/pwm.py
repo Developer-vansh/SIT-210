@@ -4,7 +4,7 @@ import time
 # Set GPIO pins
 TRIG_PIN = 24
 ECHO_PIN = 23
-LED_PIN = 16
+LED_PIN = 18
 
 # Initialize GPIO
 GPIO.setwarnings(False)
